@@ -24,12 +24,12 @@ import {
 } from "@chakra-ui/react";
 
 
-
+const {abi} = require("/Users/dhana/wpp/frontend/src/WPP.json")
  
 function Takequiz() {	
     const [value, setValue] = React.useState('1')
 
-    const uploadtoIPFS= async () => {
+    const claimRewards= async () => {
 		try {
 
             const result = await worldID.enable(); // <- Send 'result' to your backend or smart contract
@@ -43,8 +43,28 @@ function Takequiz() {
             // Re-activate here so your end user can try again
         
           }
+         // claim();
 	  };
 
+      /* Note - THIS NEEDS TO BE WORKED UPON
+      const claim= async () => {
+		
+		const ethers = Moralis.web3Library; // get ethers.js library
+		const web3Provider = await Moralis.enableWeb3(); // Get ethers.js web3Provider
+		const gasPrice = await web3Provider.getGasPrice();
+
+		const signer = web3Provider.getSigner();
+
+		// WPP contract on Mumbai
+		const contract = new ethers.Contract('0xfAe23599D813Df325dA8Dfc29f8cF71569d113A8', abi, signer);
+
+		const transaction = await contract.submitTokenClaim(signer.address,'0xA236F90a2838CA0E5fff94407dD88394EcD00F29', '1', {
+  			gasLimit: 100000000,
+  			gasPrice: gasPrice,
+		});
+		await transaction.wait();	
+		};
+        */
       useEffect(() => {
         try {
           worldID.init("world-id-container", {
@@ -93,7 +113,7 @@ Proof of personhood (PoP) is a means of resisting malicious attacks on peer to p
 						</ol>
                         <h4>Your score: 3 out of 3</h4>
                         <div id="world-id-container"></div>
-                        <Button style={{backgroundColor: 'black', color:"white", fontFamily:"cursive", width:"300px",height: '30px'}}onClick={uploadtoIPFS}>Claim Rewards</Button>
+                        <Button style={{backgroundColor: 'black', color:"white", fontFamily:"cursive", width:"300px",height: '30px'}}onClick={claimRewards}>Claim Rewards</Button>
 				</Box>
 			<Spacer />
 			</Flex>	    

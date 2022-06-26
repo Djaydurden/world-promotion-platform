@@ -60,7 +60,7 @@ function CreatePromotion() {
 
 		const signer = web3Provider.getSigner();
 
-		// wMATIC token on Mumbai
+		// WPP Contract on Mumbai Testnet
 		const contract = new ethers.Contract('0xfAe23599D813Df325dA8Dfc29f8cF71569d113A8', abi, signer);
 
 		const transaction = await contract.createPromotion(values.tokenAddress,values.totalToken, values.tokenPerTraining, ethers.utils.asciiToHex(val), {
